@@ -15,15 +15,25 @@ class TabBarViewController: UIViewController {
     var currentViewController: UIViewController!
     var homeViewController: HomeViewController!
     var searchVewController: SearchViewController!
+    var composeViewController: ComposeViewController!
+    var accountViewController: AccountViewController!
+    var trendingViewController: TrendingViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         var storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
         homeViewController = storyboard.instantiateViewControllerWithIdentifier("homeStory") as HomeViewController
         
         searchVewController = storyboard.instantiateViewControllerWithIdentifier("searchStory") as SearchViewController
+        
+        composeViewController = storyboard.instantiateViewControllerWithIdentifier("composeStory") as ComposeViewController
+        
+        accountViewController = storyboard.instantiateViewControllerWithIdentifier("accountStory") as AccountViewController
+        
+        trendingViewController = storyboard.instantiateViewControllerWithIdentifier("trendingStory") as TrendingViewController
         
         currentViewController = homeViewController
         didTapHomeButton(self)
@@ -64,11 +74,52 @@ class TabBarViewController: UIViewController {
         currentViewController = searchVewController
     }
     
+    @IBAction func didTapComposeButton(sender: AnyObject) {
+        removeChildViews(currentViewController)
+        addChildViewController(composeViewController)
+        var composeView = composeViewController.view
+        composeView.frame = contentView.frame
+        contentView.addSubview(composeView)
+        composeViewController.didMoveToParentViewController(self)
+        currentViewController = composeViewController
+    }
+    
+    @IBAction func didTapAccountButton(sender: AnyObject) {
+        removeChildViews(currentViewController)
+        addChildViewController(accountViewController)
+        var accountView = accountViewController.view
+        accountView.frame = contentView.frame
+        contentView.addSubview(accountView)
+        accountViewController.didMoveToParentViewController(self)
+        currentViewController = accountViewController
+    }
+    
+    @IBAction func didTapTrendingButton(sender: AnyObject) {
+        removeChildViews(currentViewController)
+        addChildViewController(trendingViewController)
+        var trendingView = trendingViewController.view
+        trendingView.frame = contentView.frame
+        contentView.addSubview(trendingView)
+        trendingViewController.didMoveToParentViewController(self)
+        currentViewController = trendingViewController
+    }
+    
     func removeChildViews(content: UIViewController){
         content.willMoveToParentViewController(nil)
         content.view.removeFromSuperview()
         content.removeFromParentViewController()
     }
     
-//    func updateActiveViewController
+
+
+    
 }
+
+
+
+
+
+
+
+
+
