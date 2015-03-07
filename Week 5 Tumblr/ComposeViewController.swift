@@ -141,7 +141,10 @@ class ComposeViewController: UIViewController, UIViewControllerTransitioningDele
             self.videoButton.center.y = -30
             }) { (Bool) -> Void in
                 //
+                self.backgroundBlueView.alpha = 0
         }
+        
+        
     }
     
     

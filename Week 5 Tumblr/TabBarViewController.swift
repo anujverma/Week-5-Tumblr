@@ -153,7 +153,7 @@ class TabBarViewController: UIViewController , UIViewControllerTransitioningDele
                     transitionContext.completeTransition(true)
             }
         } else {
-            UIView.animateWithDuration(0.8, animations: { () -> Void in
+            UIView.animateWithDuration(0.8, delay: 0.5, options: nil, animations: { () -> Void in
                 fromViewController.view.alpha = 0
                 }) { (finished: Bool) -> Void in
                     transitionContext.completeTransition(true)
