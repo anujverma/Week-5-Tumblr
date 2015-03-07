@@ -14,6 +14,7 @@ class TabBarViewController: UIViewController {
 
 
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var explorePopupImage: UIImageView!
     
     var currentViewController: UIViewController!
     var homeViewController: HomeViewController!
@@ -22,24 +23,28 @@ class TabBarViewController: UIViewController {
     var accountViewController: AccountViewController!
     var trendingViewController: TrendingViewController!
     
+    var originalExplorePopUpImageCenter: CGFloat!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        originalExplorePopUpImageCenter = explorePopupImage.center.y
+
+        explorePopupImage.hidden = true
+        
         var storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         homeViewController = storyboard.instantiateViewControllerWithIdentifier("homeStory") as HomeViewController
-        
         searchVewController = storyboard.instantiateViewControllerWithIdentifier("searchStory") as SearchViewController
-        
         composeViewController = storyboard.instantiateViewControllerWithIdentifier("composeStory") as ComposeViewController
-        
         accountViewController = storyboard.instantiateViewControllerWithIdentifier("accountStory") as AccountViewController
-        
         trendingViewController = storyboard.instantiateViewControllerWithIdentifier("trendingStory") as TrendingViewController
         
         currentViewController = homeViewController
         didTapHomeButton(self)
+        animateExplorePopup()
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,7 +71,9 @@ class TabBarViewController: UIViewController {
         contentView.addSubview(homeView)
         homeViewController.didMoveToParentViewController(self)
         currentViewController = homeViewController
+        explorePopupImage.hidden = false
     }
+    
     @IBAction func didTapSearchButton(sender: AnyObject) {
         removeChildViews(currentViewController)
         addChildViewController(searchVewController)
@@ -75,6 +82,7 @@ class TabBarViewController: UIViewController {
         contentView.addSubview(searchView)
         searchVewController.didMoveToParentViewController(self)
         currentViewController = searchVewController
+        explorePopupImage.hidden = true
     }
     
 //    @IBAction func didTapComposeButton(sender: AnyObject) {
@@ -95,6 +103,8 @@ class TabBarViewController: UIViewController {
         contentView.addSubview(accountView)
         accountViewController.didMoveToParentViewController(self)
         currentViewController = accountViewController
+        explorePopupImage.hidden = false
+
     }
     
     @IBAction func didTapTrendingButton(sender: AnyObject) {
@@ -105,6 +115,9 @@ class TabBarViewController: UIViewController {
         contentView.addSubview(trendingView)
         trendingViewController.didMoveToParentViewController(self)
         currentViewController = trendingViewController
+        animateExplorePopup()
+
+        
     }
     
     func removeChildViews(content: UIViewController){
@@ -113,57 +126,21 @@ class TabBarViewController: UIViewController {
         content.removeFromParentViewController()
     }
     
-
-    //custom transition
-    
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-//        var destinationVC = segue.destinationViewController as ComposeViewController
-//        destinationVC.modalPresentationStyle = UIModalPresentationStyle.Custom
-//        destinationVC.transitioningDelegate = destinationVC
-//
-//        
-//    }
-    
-
-    
-//    func animationControllerForPresentedController(presented: UIViewController!, presentingController presenting: UIViewController!, sourceController source: UIViewController!) -> UIViewControllerAnimatedTransitioning! {
-//        isPresenting = true
-//        return self
-//    }
-//    
-//    func animationControllerForDismissedController(dismissed: UIViewController!) -> UIViewControllerAnimatedTransitioning! {
-//        isPresenting = false
-//        return self
-//    }
-//    
-//    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
-//        // The value here should be the duration of the animations scheduled in the animationTransition method
-//        return 0.4
-//    }
-//    
-//    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-//        println("animating transition")
-//        var containerView = transitionContext.containerView()
-//        var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
-//        var fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
-//        
-//        if (isPresenting) {
-//            containerView.addSubview(toViewController.view)
-//            toViewController.view.alpha = 0
-//            UIView.animateWithDuration(0.4, animations: { () -> Void in
-//                toViewController.view.alpha = 1
-//                }) { (finished: Bool) -> Void in
-//                    transitionContext.completeTransition(true)
-//            }
-//        } else {
-//            UIView.animateWithDuration(0.8, delay: 0.5, options: nil, animations: { () -> Void in
-//                fromViewController.view.alpha = 0
-//                }) { (finished: Bool) -> Void in
-//                    transitionContext.completeTransition(true)
-//                    fromViewController.view.removeFromSuperview()
-//            }
-//        }
-//    }
+    func animateExplorePopup(){
+        
+        explorePopupImage.hidden = false
+        explorePopupImage.center.y = originalExplorePopUpImageCenter
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            self.explorePopupImage.center.y = self.explorePopupImage.center.y + 5
+            
+        })
+        UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.Repeat | UIViewAnimationOptions.Autoreverse, animations: { () -> Void in
+            //
+            self.explorePopupImage.center.y = self.explorePopupImage.center.y - 10
+            }, completion: { (Bool) -> Void in
+                //
+        })
+    }
 
 
 

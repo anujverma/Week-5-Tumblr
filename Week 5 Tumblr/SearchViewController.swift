@@ -10,10 +10,29 @@ import UIKit
 
 class SearchViewController: UIViewController {
 
+    @IBOutlet weak var loadingImage: UIImageView!
+    
+    @IBOutlet weak var searchFeed: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        println("View did load")
         // Do any additional setup after loading the view.
+        searchFeed.alpha = 0
+
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        println("View did appear")
+        searchFeed.alpha = 0
+        loadingImage.hidden = false
+        var images = UIImage.animatedImageNamed("loading-", duration: 0.7)
+        loadingImage.image = images
+        
+        UIView.animateWithDuration(0.3, delay: 2, options: UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
+            self.searchFeed.alpha = 1
+            }) { (Bool) -> Void in
+                self.loadingImage.hidden = true
+        }
     }
 
     override func didReceiveMemoryWarning() {
