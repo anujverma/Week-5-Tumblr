@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ComposeViewController: UIViewController, UIViewControllerTransitioningDelegate {
+class ComposeViewController: UIViewController, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {
     
     @IBOutlet weak var textButton: UIButton!
     @IBOutlet weak var photoButton: UIButton!
@@ -19,10 +19,14 @@ class ComposeViewController: UIViewController, UIViewControllerTransitioningDele
     @IBOutlet weak var nevermindButton: UIButton!
     @IBOutlet weak var backgroundBlueView: UIView!
     
+    var isPresenting: Bool = true
+    
     var originalCenterY: CGFloat! = 620
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
 
         // Do any additional setup after loading the view.
         println(view.center.y)
@@ -46,10 +50,10 @@ class ComposeViewController: UIViewController, UIViewControllerTransitioningDele
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewDidAppear(animated: Bool) {
         //
         
-        UIView.animateWithDuration(0.4, delay: 0.4, options: UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
+        UIView.animateWithDuration(0.4, delay: 0.5, options: UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
             self.nevermindButton.center.y = 541.5
         }) { (Bool) -> Void in
             //
@@ -141,7 +145,13 @@ class ComposeViewController: UIViewController, UIViewControllerTransitioningDele
             self.videoButton.center.y = -30
             }) { (Bool) -> Void in
                 //
-                self.backgroundBlueView.alpha = 0
+        }
+        
+        UIView.animateWithDuration(0.8, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 5, options: UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
+            //
+            self.nevermindButton.center.y = self.originalCenterY
+            }) { (Bool) -> Void in
+                //
         }
         
         
@@ -159,15 +169,54 @@ class ComposeViewController: UIViewController, UIViewControllerTransitioningDele
     }
     */
     
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        modalPresentationStyle = UIModalPresentationStyle.Custom
-        transitioningDelegate = self
-        
-    }
+//    required init(coder aDecoder: NSCoder) {
+//        super.init(coder: aDecoder)
+//        modalPresentationStyle = UIModalPresentationStyle.Custom
+//        transitioningDelegate = self
+//        
+//    }
     
     @IBAction func didTapNevermindButton(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func animationControllerForPresentedController(presented: UIViewController!, presentingController presenting: UIViewController!, sourceController source: UIViewController!) -> UIViewControllerAnimatedTransitioning! {
+        isPresenting = true
+        return self
+    }
+    
+    func animationControllerForDismissedController(dismissed: UIViewController!) -> UIViewControllerAnimatedTransitioning! {
+        isPresenting = false
+        return self
+    }
+    
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+        // The value here should be the duration of the animations scheduled in the animationTransition method
+        return 0.4
+    }
+    
+    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+        println("animating transition")
+        var containerView = transitionContext.containerView()
+        var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
+        var fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
+        
+        if (isPresenting) {
+            containerView.addSubview(toViewController.view)
+            toViewController.view.alpha = 0
+            UIView.animateWithDuration(0.4, animations: { () -> Void in
+                toViewController.view.alpha = 1
+                }) { (finished: Bool) -> Void in
+                    transitionContext.completeTransition(true)
+            }
+        } else {
+            UIView.animateWithDuration(0.4, delay: 0.5, options: nil, animations: { () -> Void in
+                fromViewController.view.alpha = 0
+                }) { (finished: Bool) -> Void in
+                    transitionContext.completeTransition(true)
+                    fromViewController.view.removeFromSuperview()
+            }
+        }
     }
 
 }
