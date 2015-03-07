@@ -33,7 +33,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="didTapComposeButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ZFM-Za-gDk"/>
+                                            <segue destination="eeU-eS-of1" kind="modal" id="yEZ-IN-s3O"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="NeD-lT-iW3">
@@ -107,6 +107,9 @@
                             </imageView>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="homeSpinnerImage" destination="HqG-Cy-B51" id="GW4-a6-P3q"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jow-T5-LqR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -140,14 +143,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="nevermind" id="nx1-35-cmu">
-                                <rect key="frame" x="0.0" y="515" width="320" height="53"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                            </imageView>
+                            <view contentMode="scaleToFill" id="hEj-Q3-i9v" userLabel="backgroundBlueView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="517"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.20392156859999999" green="0.27450980390000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nch-qi-x2R">
                                 <rect key="frame" x="16" y="148" width="75" height="95"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="text_icon">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hHM-fx-ILl">
+                                <rect key="frame" x="229" y="251" width="75" height="95"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="video_icon">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -179,16 +190,28 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hHM-fx-ILl">
-                                <rect key="frame" x="229" y="251" width="75" height="95"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ym3-7D-vo8" userLabel="nevermindButton">
+                                <rect key="frame" x="0.0" y="515" width="320" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="video_icon">
+                                <state key="normal" backgroundImage="nevermind">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="didTapNevermindButton:" destination="eeU-eS-of1" eventType="touchUpInside" id="xnP-Ce-58O"/>
+                                </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.20392156862745098" green="0.27450980392156865" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="backgroundBlueView" destination="hEj-Q3-i9v" id="T5F-0B-njE"/>
+                        <outlet property="chatButton" destination="wTW-4f-KUx" id="epX-aX-N6I"/>
+                        <outlet property="linkButton" destination="aeQ-pH-wiA" id="6Mx-AG-jeC"/>
+                        <outlet property="nevermindButton" destination="ym3-7D-vo8" id="e6N-Lt-uwY"/>
+                        <outlet property="photoButton" destination="4cA-wl-Biy" id="xbs-Va-5PJ"/>
+                        <outlet property="quoteButton" destination="Idf-vF-3Y9" id="qoE-M6-X27"/>
+                        <outlet property="textButton" destination="nch-qi-x2R" id="8D6-Wl-OMp"/>
+                        <outlet property="videoButton" destination="hHM-fx-ILl" id="scH-5V-264"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="npM-o9-al7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
