@@ -116,12 +116,15 @@ class TabBarViewController: UIViewController {
 
     //custom transition
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        var destinationVC = segue.destinationViewController as ComposeViewController
-        destinationVC.modalPresentationStyle = UIModalPresentationStyle.Custom
-        destinationVC.transitioningDelegate = destinationVC
-        
-    }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+//        var destinationVC = segue.destinationViewController as ComposeViewController
+//        destinationVC.modalPresentationStyle = UIModalPresentationStyle.Custom
+//        destinationVC.transitioningDelegate = destinationVC
+//
+//        
+//    }
+    
+
     
 //    func animationControllerForPresentedController(presented: UIViewController!, presentingController presenting: UIViewController!, sourceController source: UIViewController!) -> UIViewControllerAnimatedTransitioning! {
 //        isPresenting = true

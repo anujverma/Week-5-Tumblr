@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B807C4A1AABA935008ED581 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B807C491AABA935008ED581 /* LoginViewController.swift */; };
 		2BA8028F1AA68E3E0054377F /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA8028E1AA68E3E0054377F /* TabBarViewController.swift */; };
 		2BB1600F1AA681A5004824B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB1600E1AA681A5004824B7 /* AppDelegate.swift */; };
 		2BB160111AA681A5004824B7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB160101AA681A5004824B7 /* ViewController.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B807C491AABA935008ED581 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2BA8028E1AA68E3E0054377F /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		2BB160091AA681A5004824B7 /* Week 5 Tumblr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Week 5 Tumblr.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BB1600D1AA681A5004824B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			children = (
 				2BB160301AA68A68004824B7 /* SearchViewController.swift */,
 				2BB160331AA68AFC004824B7 /* ComposeViewController.swift */,
+				2B807C491AABA935008ED581 /* LoginViewController.swift */,
 				2BB160371AA68C7D004824B7 /* TrendingViewController.swift */,
 				2BB160351AA68C4B004824B7 /* AccountViewController.swift */,
 				2BB1602E1AA689ED004824B7 /* HomeViewController.swift */,
@@ -238,6 +241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B807C4A1AABA935008ED581 /* LoginViewController.swift in Sources */,
 				2BA8028F1AA68E3E0054377F /* TabBarViewController.swift in Sources */,
 				2BB160381AA68C7D004824B7 /* TrendingViewController.swift in Sources */,
 				2BB160341AA68AFC004824B7 /* ComposeViewController.swift in Sources */,

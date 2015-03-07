@@ -9,6 +9,8 @@
 import UIKit
 
 class ComposeViewController: UIViewController, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {
+
+    
     
     @IBOutlet weak var textButton: UIButton!
     @IBOutlet weak var photoButton: UIButton!
@@ -23,6 +25,13 @@ class ComposeViewController: UIViewController, UIViewControllerTransitioningDele
     
     var originalCenterY: CGFloat! = 620
 
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        modalPresentationStyle = UIModalPresentationStyle.Custom
+        transitioningDelegate = self
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -169,12 +178,7 @@ class ComposeViewController: UIViewController, UIViewControllerTransitioningDele
     }
     */
     
-//    required init(coder aDecoder: NSCoder) {
-//        super.init(coder: aDecoder)
-//        modalPresentationStyle = UIModalPresentationStyle.Custom
-//        transitioningDelegate = self
-//        
-//    }
+
     
     @IBAction func didTapNevermindButton(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
