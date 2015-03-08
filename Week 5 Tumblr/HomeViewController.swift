@@ -16,6 +16,13 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+
+        
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        println("HomeView did appear")
         UIView.animateWithDuration(10.0, delay: 0, options: UIViewAnimationOptions.Repeat | UIViewAnimationOptions.CurveEaseIn | UIViewAnimationOptions.CurveEaseOut | UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
             //
             var rotate = CGFloat(180 * M_PI/180)
@@ -23,8 +30,6 @@ class HomeViewController: UIViewController {
             }) { (Bool) -> Void in
                 //
         }
-        
-        
     }
 
     override func didReceiveMemoryWarning() {
